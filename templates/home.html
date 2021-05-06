@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Todo List - Home{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="hero-image-gallery" style="background-image: url({% static 'images/(15).jpeg' %});">
+        <!-- I use inline background image because somehow django just can't find it in the CSS files -->
+        <div class="hero-text">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <a class='btn'>View List</a>
+            <a class='btn'>Update</a>
+            <a class='btn' href="{% url 'logout' %}>Logout</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Add Task</h2>
+            <p>Description</p>
+            <a class="btn" href='{% url 'home' %}'>Add Task</a>
+        </div>
+        <div class="col-md-6">
+            <h2>Add Category</h2>
+            <p>Description</p>
+            <a class="btn" href='{% url 'home' %}'>Add Category</a>
+        </div>
+    </div>
+
+
+{% else %}
+    <div class="hero-image-gallery" style="background-image: url({% static 'images/(15).jpeg' %})">
+        <!-- I use inline background image because somehow django just can't find it in the CSS files -->
+        <div class="hero-text">
+            <h1>Hello!</h1>
+            <a class='btn' href="{% url 'login' %}">Log in</a>
+            <a class='btn' href="{% url 'signup' %}">Sign up</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

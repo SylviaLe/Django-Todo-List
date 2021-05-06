@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Todo List{% endblock title %}
+
+
+{% block content %}
+        <div>
+            <div class="card-header">
+            <span class="font-weight-bold">{{ todo.title }}</span> &middot;
+            <span class="text-muted">by {{ todo.priority }}</span>
+            <span class="text-muted">by {{ todo.completed }}</span>
+            <span class="text-muted">by {{ todo.category }}</span>
+            <a href="{% url 'todo_edit' todo.pk %}">Edit</a> | <a href="{% url 'todo_delete' todo.pk %}">Delete</a>
+        </div>
+{% endblock content %}
