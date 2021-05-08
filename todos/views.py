@@ -18,25 +18,27 @@ class HomePageView(TemplateView):
 class TodoListView(ListView):
     model = Todos
     template_name = 'todo_list.html'
-    
-
-class TodoDetailView(LoginRequiredMixin, DetailView): 
-    model = Todos
-    template_name = 'todo_detail.html'
     context_object_name = 'todos'
-    login_url = 'login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['todos'] = context['todos'].filter(owner=self.request.user)
 
         return context
+    
+
+class TodoDetailView(LoginRequiredMixin, DetailView): 
+    model = Todos
+    template_name = 'todo_detail.html'
+    context_object_name = 'todo'
+    #login_url = 'login'
+    
 
 class TodoCompleteView(LoginRequiredMixin, DetailView): 
     model = Todos
     template_name = 'todo_complete.html'
     context_object_name = 'todos_complete'
-    login_url = 'login'
+    #login_url = 'login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -47,9 +49,9 @@ class TodoCompleteView(LoginRequiredMixin, DetailView):
 
 class TodoEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): 
     model = Todos
-    fields = ('title', 'priority', 'completed', 'category')
+    fields = ('title', 'priority', 'completed') #add a category field here when Maddie is done
     template_name = 'todo_edit.html'
-    login_url = 'login'
+    #login_url = 'login'
 
     def test_func(self): 
         obj = self.get_object()
@@ -61,18 +63,18 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Todos
     template_name = 'todo_delete.html'
     success_url = reverse_lazy('todo_list')
-    login_url = 'login'
+    #login_url = 'login'
 
     def test_func(self): 
         obj = self.get_object()
         return obj.owner == self.request.user
 
 
-class TodoCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todos
     template_name = 'todo_new.html'
-    fields = ('title', 'priority', 'completed', 'category')
-    login_url = 'login' 
+    fields = ('title', 'priority', 'completed') #add a category field here when Maddie is done
+    login_url = 'home' 
 
     def form_valid(self, form): 
         form.instance.owner = self.request.user

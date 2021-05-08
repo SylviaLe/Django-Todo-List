@@ -7,8 +7,8 @@ urlpatterns = [
     path('todos/complete', TodoCompleteView.as_view(), name="todo_complete"),
     path('todo/<int:pk>', TodoDetailView.as_view(), name='todo_detail'),
     path('todo/<int:pk>/edit', TodoEditView.as_view(), name='todo_edit'),
-    path('todo/<int:pk>/delete', TodoDeleteView.as_view(), name='todo_complete'),
-    #path('todo/new', TodoCreateView.as_view(), name='todo_new'),
+    path('todo/<int:pk>/delete', TodoDeleteView.as_view(), name='todo_delete'),
+    path('todo/new', TodoCreateView.as_view(), name='todo_new'),
 
     path('categories/', CategoryListView.as_view(), name="cate_list"),
     path('categories/<int:pk>', CategoryDetailView.as_view(), name="cate_detail"),

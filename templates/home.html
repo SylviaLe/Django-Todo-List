@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Todo List - Home{% endblock title %}
 
 {% block content %}
 {% if user.is_authenticated %}
-    <div class="hero-image-gallery" style="background-image: url({% static 'images/(15).jpeg' %});">
+    <div class="hero-image-login" style="background-image: url({% static 'images/(1).jpg' %});">
         <!-- I use inline background image because somehow django just can't find it in the CSS files -->
         <div class="hero-text">
             <h1>Welcome, {{ user.username }}!</h1>
-            <a class='btn'>View List</a>
-            <a class='btn'>Update</a>
-            <a class='btn' href="{% url 'logout' %}>Logout</a>
+            <a class='btn btn-outline-info'>View List</a>
+            <a class='btn btn-outline-info'>Update</a>
+            {# <a class='btn' href="{% url 'logout' %}>Logout</a> #} 
         </div>
     </div>
     <div class="row">
@@ -28,12 +29,12 @@
 
 
 {% else %}
-    <div class="hero-image-gallery" style="background-image: url({% static 'images/(15).jpeg' %})">
+    <div class="hero-image-not" style="background-image: url({% static 'images/(2).jpeg' %})">
         <!-- I use inline background image because somehow django just can't find it in the CSS files -->
         <div class="hero-text">
             <h1>Hello!</h1>
-            <a class='btn' href="{% url 'login' %}">Log in</a>
-            <a class='btn' href="{% url 'signup' %}">Sign up</a>
+            {# <a class='btn' href="{% url 'login' %}">Log in</a> #}
+            {# <a class='btn' href="{% url 'signup' %}">Sign up</a> #}
         </div>
     </div>
 {% endif %}
