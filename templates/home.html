@@ -8,9 +8,9 @@
     <div class="hero-image-login" style="background-image: url({% static 'images/(1).jpg' %});">
         <!-- I use inline background image because somehow django just can't find it in the CSS files -->
         <div class="hero-text">
-            <h1>Welcome, {{ user.username }}!</h1>
-            <a class='btn btn-outline-info mx-2 mt-5'>View List</a>
-            <a class='btn btn-outline-info mx-2 mt-5'>Update</a> 
+            <h1>Welcome, {{ user.first_name }}!</h1>
+            <a class='btn btn-outline-light mx-2 mt-5'>View List</a>
+            <a class='btn btn-outline-light mx-2 mt-5'>Update</a> 
         </div>
     </div>
     <div class="container w-80"></div>
@@ -19,13 +19,13 @@
               <h3 class=' my-5'>Add Task</h3>
               <img src="{% static 'images/tasks.png' %}" alt="" class='mx-auto d-block' style="max-width: 30%;">
               <p class='mt-5 mb-3'>Description</p>
-              <a class="btn btn-outline-primary text-center" href='{% url 'todo_new' %}'>Add Task</a>
+              <a class="btn btn-dark text-info text-center" href='{% url 'todo_new' %}'>Add Task</a>
           </div>
           <div class="col-md-6 text-center">
               <h3 class='my-5'>Add Category</h3>
               <img src="{% static 'images/selective.png' %}" alt="" class='mx-auto d-block' style="max-width: 30%;">
               <p class='mt-5 mb-3'>Description</p>
-              <a class="btn btn-outline-primary text-center" href='{% url 'home' %}'>Add Category</a>
+              <a class="btn btn-dark text-info text-center" href='{% url 'cate_new' %}'>Add Category</a>
           </div>
       </div>
     </div>
@@ -36,8 +36,8 @@
         <!-- I use inline background image because somehow django just can't find it in the CSS files -->
         <div class="hero-text">
             <h1>Hello!</h1>
-            {# <a class='btn btn-outline-info mx-2 mt-5' href="{% url 'login' %}">Log in</a> #}
-            {# <a class='btn btn-outline-info mx-2 mt-5' href="{% url 'signup' %}">Sign up</a> #}
+            <a class='btn btn-outline-info mx-2 mt-5' href="{% url 'login' %}">Log in</a>
+            <a class='btn btn-outline-info mx-2 mt-5' href="{% url 'signup' %}">Sign up</a>
         </div>
     </div>
 {% endif %}

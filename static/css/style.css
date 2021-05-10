@@ -30,7 +30,7 @@ h4{
 }
 
 .btn{
-    border-radius: 20px;
+    border-radius: 5px;
     padding-bottom: 8px;
     margin-top: 1.5rem;
     margin-right: 10px
@@ -43,6 +43,21 @@ footer a{
 
 a.todo{
     text-decoration: none !important;
+}
+
+.delete{
+    background: no-repeat linear-gradient(90deg, #EF7674 0%, #EE676D 17%, #EC5766 34%, #EC5766 51%, #DA344D 68%, #DD465D 100%); 
+    height: 9rem;
+}
+
+.complete{
+    background: no-repeat linear-gradient(90deg, #77ACA2 0%, #468189 43%, #031926 100%); 
+    height: 9rem;
+}
+
+.cates-detail{
+    background: no-repeat linear-gradient(90deg, #231942 0%, #5e548e 25%, #9f86c0 45%, #be95c4 75%, #e0b1cb 100%); 
+    height: 9rem;
 }
 
 /* The hero image */
@@ -73,6 +88,31 @@ a.todo{
         position: relative;
     }
 
+.hero-image-todolist {
+    /* Add linear gradient to darken the background img */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/todolist.jpg");
+        /* Set a specific height */
+        height: 60%;
+    
+        /* Center and scale the image*/
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+.hero-image-cates {
+    /* Add linear gradient to darken the background img */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/cates.jpg");
+        /* Set a specific height */
+        height: 60%;
+    
+        /* Center and scale the image*/
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
 
 /* The text of the image*/
 .hero-text {

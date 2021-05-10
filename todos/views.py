@@ -2,12 +2,12 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     UserPassesTestMixin 
 )
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView 
 from django.views.generic.edit import UpdateView, DeleteView, CreateView 
 from django.urls import reverse_lazy 
-from .models import Todos
+from .models import Todos, Categories
 
 #Home page views
 class HomePageView(TemplateView):
@@ -20,9 +20,11 @@ class TodoListView(ListView):
     template_name = 'todo_list.html'
     context_object_name = 'todos'
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['todos'] = context['todos'].filter(owner=self.request.user)
+        context['total'] = context['todos'].filter(owner=self.request.user).count()
 
         return context
     
@@ -31,14 +33,14 @@ class TodoDetailView(LoginRequiredMixin, DetailView):
     model = Todos
     template_name = 'todo_detail.html'
     context_object_name = 'todo'
-    #login_url = 'login'
+    login_url = 'login'
     
 
 class TodoCompleteView(LoginRequiredMixin, ListView): 
     model = Todos
     template_name = 'todo_complete.html'
     context_object_name = 'todos_complete'
-    #login_url = 'login'
+    login_url = 'login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,9 +51,9 @@ class TodoCompleteView(LoginRequiredMixin, ListView):
 
 class TodoEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): 
     model = Todos
-    fields = ('title', 'priority', 'completed') #add a category field here when Maddie is done
+    fields = ('title', 'priority', 'completed', 'category')
     template_name = 'todo_edit.html'
-    #login_url = 'login'
+    login_url = 'login'
 
     def test_func(self): 
         obj = self.get_object()
@@ -64,7 +66,7 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'todo_delete.html'
     success_url = reverse_lazy('todo_list')
     context_object_name = 'todo'
-    #login_url = 'login'
+    login_url = 'login'
 
     def test_func(self): 
         obj = self.get_object()
@@ -74,8 +76,8 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todos
     template_name = 'todo_new.html'
-    fields = ('title', 'priority')  #add a category field here when Maddie is done
-    login_url = 'home' 
+    fields = ('title', 'priority', 'category')
+    login_url = 'login' 
 
     def form_valid(self, form): 
         form.instance.owner = self.request.user
@@ -85,21 +87,59 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
 
 #Category views:
 class CategoryListView(ListView):
-    pass
+    model = Categories
+    template_name = 'category_list.html'
+    context_object_name = 'cates'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cates'] = context['cates'].filter(owner=self.request.user)
+
+        return context
     
 
 class CategoryDetailView(LoginRequiredMixin, DetailView): 
-    pass
-    #The list of todos belong to a category are listed here
+    model = Categories
+    template_name = 'category_detail.html'
+    context_object_name = 'cate'
+    login_url = 'login'
 
 
 class CategoryEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): 
-    pass
+    model = Categories
+    fields = ('title', 'description')
+    template_name = 'category_edit.html'
+    login_url = 'login'
+
+    def test_func(self):
+        cate = self.get_object()
+        return cate.owner == self.request.user
+
+    def handle_no_permission(self):
+        return redirect('cate_list')
 
     
 class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): 
-    pass
+    model = Categories
+    template_name = 'category_delete.html'
+    success_url = reverse_lazy('cate_list')
+    context_object_name = 'cate'
+    login_url = 'login'
+
+    def test_func(self):
+        cate = self.get_object()
+        return cate.owner == self.request.user
+
+    def handle_no_permission(self):
+        return redirect('cate_list')
 
 
-class CategoryCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    pass
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Categories
+    template_name = 'category_new.html'
+    fields = ('title', 'description' )
+    login_url = 'login'
+
+    def form_valid(self, form): 
+        form.instance.owner = self.request.user
+        return super().form_valid(form)

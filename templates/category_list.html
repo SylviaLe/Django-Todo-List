@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Categories{% endblock title %}
+
+{% block content %}
+<div class="hero-image-cates">
+  <!-- I use inline background image because somehow django just can't find it in the CSS files -->
+  <div class="hero-text">
+      <h1>Your Categories</h1>
+  </div>
+</div>
+
+  <div class="container w-75">
+    <div class="row">
+      <div class="col-md-12 text-end">
+          <a class="btn btn-dark text-info btn-md mb-3" href='{% url 'cate_new'%}'>Add a category</a>
+      </div>
+    <div class="row row-cols-3"></div>
+        {% for cate in cates %}
+        <div class="col my-3">
+          <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ cate.title }}</h5>
+                <p class="card-text">{{ cate.description }}</p>
+                <a href="{% url 'cate_detail' cate.pk %}" class="btn btn-primary mt-0 py-1" style="border-radius: 5px;">View detail</a>
+                <a class='btn btn-info btn-sm mt-0 mb-1' href='{% url 'cate_edit' cate.pk %}' data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" style="border-radius: 5px;"><i class="fas fa-pen"></i></a>
+                <a class='btn btn-danger btn-sm mt-0 mb-1 px-2.5' href='{% url 'cate_delete' cate.pk %}' data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" style="border-radius: 5px;"><i class="fas fa-trash"></i></a>
+              </div>
+            </div>
+        </div>
+  {% endfor %}
+    </div>
+  </div>
+{% endblock content %}
