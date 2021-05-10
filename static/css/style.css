@@ -30,28 +30,20 @@ h4{
 }
 
 .btn{
-    border-radius: 40px;
+    border-radius: 20px;
     padding-bottom: 8px;
     margin-top: 1.5rem;
     margin-right: 10px
 }
-img.rounded-circle{
-    width:300px;
-    height: 300px;
-}
-.progress{
-    height: 5px;
-    margin-bottom: 8px;
-}
-section{
-    margin-top: 6rem;
-}
-
-.btn.proj{
-    margin-top: 2px;
-}
 
 
+footer a{
+    text-decoration: none;
+}
+
+a.todo{
+    text-decoration: none !important;
+}
 
 /* The hero image */
 .hero-image-login {
@@ -67,6 +59,7 @@ section{
         position: relative;
     }
 
+/* hero image when user not log in */
 .hero-image-not {
     /* Add linear gradient to darken the background img */
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/(2).jpg");

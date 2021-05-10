@@ -34,7 +34,7 @@ class TodoDetailView(LoginRequiredMixin, DetailView):
     #login_url = 'login'
     
 
-class TodoCompleteView(LoginRequiredMixin, DetailView): 
+class TodoCompleteView(LoginRequiredMixin, ListView): 
     model = Todos
     template_name = 'todo_complete.html'
     context_object_name = 'todos_complete'
@@ -63,6 +63,7 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Todos
     template_name = 'todo_delete.html'
     success_url = reverse_lazy('todo_list')
+    context_object_name = 'todo'
     #login_url = 'login'
 
     def test_func(self): 
@@ -73,7 +74,7 @@ class TodoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class TodoCreateView(LoginRequiredMixin, CreateView):
     model = Todos
     template_name = 'todo_new.html'
-    fields = ('title', 'priority', 'completed') #add a category field here when Maddie is done
+    fields = ('title', 'priority')  #add a category field here when Maddie is done
     login_url = 'home' 
 
     def form_valid(self, form): 

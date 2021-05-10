@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Delete</h1>
-    <form action="" method="post">{% csrf_token %}
-        <p>Are you sure you want to delete "{{ todo.title }}"?</p>
-        <button class="btn btn-danger ml-2" type="submit">Confirm</button>
-    </form>
+    <div class="container w-50">
+        <h3 class="text-center">Delete</h3>
+        <form action="" method="post" class="text-center">{% csrf_token %}
+            <img src="{% static 'images/remove.png' %}" class='mx-auto d-block' style="max-width: 25%;">
+            <p class="my-3">Are you sure you want to delete "{{ todo.title }}"?</p>
+            <a class="btn btn-secondary mx-auto mt-2 mb-3" href='{% url 'todo_list' %}' style="border-radius: 15px;">Cancel</a>
+            <button class="btn btn-danger mx-auto mt-2 mb-3" type="submit" style="border-radius: 15px;">Confirm</button>
+        </form>
+    </div>
 {% endblock content %}
