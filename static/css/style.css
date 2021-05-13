@@ -65,7 +65,7 @@ a.todo{
     /* Add linear gradient to darken the background img */
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/(1).jpg");
         /* Set a specific height */
-        height: 80%;
+        height: 90%;
     
         /* Center and scale the image*/
         background-position: center;
@@ -79,7 +79,7 @@ a.todo{
     /* Add linear gradient to darken the background img */
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/(2).jpg");
         /* Set a specific height */
-        height: 80%;
+        height: 90%;
     
         /* Center and scale the image*/
         background-position: center;
@@ -122,4 +122,26 @@ a.todo{
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+}
+
+
+.custom-shape-divider-bottom-1620899885 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1620899885 svg {
+    position: relative;
+    display: block;
+    width: calc(117% + 1.3px);
+    height: 96px;
+}
+
+.custom-shape-divider-bottom-1620899885 .shape-fill {
+    fill: #FFFFFF;
 }

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container w-50">
-  <h3>Sign Up</h3>
+  <h3 class="my-3">Sign Up</h3>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}

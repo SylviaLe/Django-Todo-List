@@ -15,10 +15,11 @@ class HomePageView(TemplateView):
 
 
 #Todos views
-class TodoListView(ListView):
+class TodoListView(LoginRequiredMixin, ListView):
     model = Todos
     template_name = 'todo_list.html'
     context_object_name = 'todos'
+    login_url = 'login'
 
 
     def get_context_data(self, **kwargs):
@@ -86,10 +87,11 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
     
 
 #Category views:
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
     model = Categories
     template_name = 'category_list.html'
     context_object_name = 'cates'
+    login_url = 'login'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
