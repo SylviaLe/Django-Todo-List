@@ -13,5 +13,9 @@
 
 
 - NOTE:
+<<<<<<< HEAD
   + Superuser 1: sylvia, SbjyxH1119
   + Superuser 2: irakli, BtdSxn39@A4YTRx
+=======
+  + Superuser 1: sylvia, SbjyxH1119
+>>>>>>> fe3a37fdb64bdc6e39686ca8800a585bd749c497
