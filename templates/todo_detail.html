@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ todo.title }}{% endblock title %}
+
+
+{% block content %}
+        <div class="container w-50">
+            <h3 class="my-3">{{ todo.title }}</h3>
+            <p><b>Priority: </b>
+                {% if todo.priority %}
+                    <span>Yes</span>
+                {% else %}
+                    <span>No</span>
+                {% endif %}
+            </p>
+            <p><b>Completed:</b> 
+                {% if todo.completed %}
+                    <span>Yes</span>
+                {% else %}
+                    <span>No</span>
+                {% endif %}
+            </p>
+            <p><b>Category: </b>{{ todo.category }}</p>
+            <a class="btn btn-info mt-2 mb-3" href="{% url 'todo_edit' todo.pk %}">Edit</a>
+            <a class="btn btn-danger mt-2 mb-3" href="{% url 'todo_delete' todo.pk %}">Delete</a>
+            </div>
+        </div>
+{% endblock content %}

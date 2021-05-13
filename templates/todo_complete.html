@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Completed Tasks{% endblock title %}
+
+
+{% block content %}
+<div class="complete">
+    <h2 class="text-start text-light px-3 pt-4">Completed Tasks</h2>
+</div>
+    <div class="container w-50">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <a class="btn btn-primary btn-md mb-3" href='{% url 'todo_new' %}'>Add task</a>
+                <a class="btn btn-info btn-md mb-3">Add a category</a>
+            </div>
+        </div>
+    {% for todo in todos_complete %}
+        <div class="row border-bottom my-3">
+            <div class="col-md-8">
+            {% if todo.priority %}
+            <a class='fw-bold text-dark' href='{% url 'todo_detail' todo.pk %}' style="text-decoration: none;">
+                <i class="fas fa-star text-warning"></i>{{todo.title}}
+            </a>
+            {% else %}
+                <a href='{% url 'todo_detail' todo.pk %}' style="text-decoration: none;" class="text-dark">{{todo.title}}</a>
+            {% endif %}
+            </div>
+            <div class="col-md-4 text-end">
+                <a class='btn btn-info btn-sm mt-0 mb-1 px-2' href='{% url 'todo_edit' todo.pk %}' data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" style="border-radius: 5px;"><i class="fas fa-pen"></i></a>
+                <a class='btn btn-danger btn-sm mt-0 mb-1' href='{% url 'todo_delete' todo.pk %}' data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" style="border-radius: 5px;"><i class="fas fa-trash"></i></a>
+            </div>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Task{% endblock title %}
+
+{% block content %}
+    <div class="delete">
+        <h2 class="text-start text-light px-3 pt-4">Delete</h2>
+    </div>
+    <div class="container w-50">
+        <form action="" method="post" class="text-center">{% csrf_token %}
+            <img src="{% static 'images/remove.png' %}" class='mx-auto d-block my-5' style="max-width: 25%;">
+            <p class="my-3">Are you sure you want to delete "{{ todo.title }}"?</p>
+            <a class="btn btn-secondary mx-auto mt-2 mb-3" href='{% url 'todo_list' %}' >Cancel</a>
+            <button class="btn btn-danger mx-auto mt-2 mb-3" type="submit">Confirm</button>
+        </form>
+    </div>
+{% endblock content %}

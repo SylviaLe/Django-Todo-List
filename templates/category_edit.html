@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Edit Category{% endblock title %}
+
+{% block content %}
+  <div class="container w-50">
+    <h3 class="my-3">Edit</h3>
+    <form action="" method="post">{% csrf_token %}
+      <div class="my-3">
+        {{ form.title|as_crispy_field }}
+      </div>
+      <div class="my-3">
+          {{ form.description|as_crispy_field }}
+      </div>
+      <button class="btn btn-info mt-2 mb-3" type="submit">Update</button>
+    </form>
+  </div>  
+{% endblock content %}
