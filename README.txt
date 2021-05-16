@@ -13,3 +13,13 @@
   + Please install django-crispy-form to view the forms
 
 
+<<<<<<< HEAD
+=======
+- NOTE:
+<<<<<<< HEAD
+  + Superuser 1: sylvia, SbjyxH1119
+  + Superuser 2: irakli, BtdSxn39@A4YTRx
+=======
+  + Superuser 1: sylvia, SbjyxH1119
+>>>>>>> fe3a37fdb64bdc6e39686ca8800a585bd749c497
+>>>>>>> d375da754c4292bcb5a560893fea6a591f384537
